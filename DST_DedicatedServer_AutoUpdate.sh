@@ -3,7 +3,7 @@
 me=$(basename "$0")
 if pidof -o %PPID -x "$me" >/dev/null; then
     #Another script instance is already running.
-    exit 1
+    exit 42
 fi
 
 dontstarve_dir="$HOME/.klei/DoNotStarveTogether"
