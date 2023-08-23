@@ -3,7 +3,7 @@ A bash script to check if your Don't Starve Together Dedicated Server is up-to-d
 
 This script is originally intended for vanilla servers, it doesn't auto update modded dedicated servers.
 
-Only works on GNU/Linux. Tested on Debian 11 and higher.
+Only works on GNU/Linux. Tested on Debian 12 and higher.
 
 ## Download
 ### GNU/Linux
