@@ -11,7 +11,7 @@ install_dir="$dontstarve_dir/.dontstarvetogether_dedicated_server"
 
 export PATH="$PATH:/usr/games"
 #^ Fix "steamcmd: command not found" in cron job
-current_version=$(steamcmd +force_install_dir "$install_dir" +login anonymous +app_info_update 1 +app_status 343050 +quit | grep -Eo '(BuildID )([0-9]*)' | grep -Eo '[0-9]*')
+current_version=$(timeout 30 steamcmd +force_install_dir "$install_dir" +login anonymous +app_info_update 1 +app_status 343050 +quit | grep -Eo '(BuildID )([0-9]*)' | grep -Eo '[0-9]*')
 latest_version=$(timeout 30 python3 -c "from steam.client import SteamClient;client = SteamClient();client.anonymous_login();print(client.get_product_info(apps=[343050])['apps'][343050]['depots']['branches']['public']['buildid'])")
 
 if [[ -z "$current_version" || -z "$latest_version" ]]; then
