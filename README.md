@@ -33,7 +33,7 @@ sudo python3 -m pip install --break-system-packages -U steam[client]
 ## Setup
 1. Launch your DST Dedicated Server(s) at least once, thanks to the [Klei's script file](https://accounts.klei.com/assets/gamesetup/linux/run_dedicated_servers.sh).
 
-   Recommended version of the file (taking into account `steamcmd`'s global install):
+Recommended version of the file (taking into account `steamcmd`'s global install):
 ```bash
 #!/bin/bash
 
@@ -59,8 +59,6 @@ check_for_file "$dontstarve_dir/$cluster_name/cluster.ini"
 check_for_file "$dontstarve_dir/$cluster_name/cluster_token.txt"
 check_for_file "$dontstarve_dir/$cluster_name/Master/server.ini"
 check_for_file "$dontstarve_dir/$cluster_name/Caves/server.ini"
-
-steamcmd +force_install_dir "$install_dir" +login anonymous +app_update 343050 validate +quit
 
 check_for_file "$install_dir/bin64"
 
