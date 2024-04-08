@@ -76,17 +76,19 @@ run_shared+=(-monitor_parent_process $$)
 ```
 ^ Replace `$SERVER_NAME` accordingly.
 
-2. Edit `DST_DedicatedServer_AutoUpdate.sh`:
+2. Install the server with `steamcmd +force_install_dir "$install_dir" +login anonymous +app_update 343050 validate +quit` (make sure the `install_dir` match your script's). The command is originally inside the Klei's script, but it's better to omit it when using the auto-update script.
+
+3. Edit `DST_DedicatedServer_AutoUpdate.sh`:
    - Make sure the variables `dontstarve_dir` and `install_dir` values match the ones used in the file(s) `run_dedicated_servers.sh`.
    - Read the script's comments, add your servers while indicated, replacing `$PATH` and `$COUNT` accordingly. `$COUNT` is a number you can increment with each different server you add.
 
-3. Create the crob job to run the script every minute:
+4. Create the crob job to run the script every minute:
 ```bash
 echo -e '* * * * * $USER "$PATH/DST_DedicatedServer_AutoUpdate.sh"' | sudo tee -a "/etc/cron.d/dst"
 ```
 ^ Replace `$USER` and `$PATH` accordingly.
 
-4. For each of your server, add the following line inside `/etc/cron.d/dst`:
+5. For each of your server, add the following line inside `/etc/cron.d/dst`:
 ```bash
 @reboot $USER sleep 30 && screen -d -m -S DST_server_$COUNT "$PATH/run_dedicated_servers.sh"
 ```
@@ -96,4 +98,4 @@ If this step is done correctly, your dedicated server(s) will launch automatical
 
 You can list your screen sessions (and thus your launched dedicated servers) with the command `screen -ls`.
 
-5. Reboot your machine.
+6. Reboot your machine.
