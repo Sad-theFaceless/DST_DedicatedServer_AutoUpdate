@@ -26,8 +26,12 @@ fi
 
 sleep 60 #Failsafe to prevent the following commands to run before the servers initially boot up
 
-# Add all the servers to shutdown here
-screen -S DST_server_$COUNT -X stuff "^C"
+# Add all the servers to shutdown here. "console_enabled = true" must be put under "[MISC]" in my "cluster.ini" file
+screen -S DST_server_$COUNT -X stuff "c_shutdown()^M"
+## A 2nd shutdown might be necessary in case the Caves cluster alone shutdowns
+sleep 10
+screen -S DST_server_$COUNT -X stuff "c_shutdown()^M"
+## Note: the ^M is to simulate "Enter"
 
 ###
 
